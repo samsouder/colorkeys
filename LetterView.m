@@ -69,10 +69,10 @@
 - (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)cgContext
 {
 	// DEBUG
-	// NSLog(@"Drawing layer: %@", layer.name);
+    // NSLog(@"Drawing layer: %@", layer.name);
 	
 	[NSGraphicsContext saveGraphicsState];
-	[NSGraphicsContext setCurrentContext:[NSGraphicsContext graphicsContextWithGraphicsPort:cgContext flipped:NO]];
+    [NSGraphicsContext setCurrentContext:[NSGraphicsContext graphicsContextWithCGContext:cgContext flipped:NO]];
 	
 	// NSRect theRect = NSRectFromCGRect(CGContextGetClipBoundingBox(cgContext));
 	
@@ -101,7 +101,7 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
 	// DEBUG
-	// NSLog(@"value updated for keypath: %@ with change: %@", keyPath, [change description]);
+    // NSLog(@"value updated for keypath: %@ with change: %@", keyPath, [change description]);
 	
 	if ( [keyPath isEqualToString:@"theLetter"] )
 	{
@@ -131,7 +131,7 @@
 - (void)layoutSublayersOfLayer:(CALayer *)layer
 {
 	// DEBUG
-	// NSLog(@"Laying out sublayers of %@...", layer.name);
+    // NSLog(@"Laying out sublayers of %@...", layer.name);
 	CATextLayer *tempLayer;
 	CGRect tempBounds;
 	

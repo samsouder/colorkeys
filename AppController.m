@@ -1,6 +1,6 @@
 #import "AppController.h"
 
-#define kSoundsPath @"/Library/Audio/Apple Loops/Apple/iLife Sound Effects/"
+#define kSoundsPath @"/Library/Audio/Apple Loops/Apple/18 Toy Box/"
 #define kSoundDurationLimit 20
 
 @implementation AppController
@@ -57,7 +57,7 @@
 		theKeys = [[NSArray alloc] initWithObjects:@"a",@"b",@"c",@"d",@"e",@"f",@"g",@"h",@"i",@"j",@"k",@"l",@"m",@"n",@"o",@"p",@"q",@"r",@"s",@"t",@"u",@"v",@"w",@"x",@"y",@"z",@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9", nil];
 		
 		// Start up the display string
-		tempString = @"Hi.";
+		tempString = [NSMutableString stringWithString:@"Hi"];
 	}
 	return self;
 }
@@ -96,7 +96,7 @@
 
 - (void)sendEvent:(NSEvent *)theEvent
 {
-	if ( [theEvent type] == NSKeyDown )
+	if ( [theEvent type] == NSEventTypeKeyDown )
 	{
 		// DEBUG
 		// NSLog(@"event: %@", theEvent);
@@ -112,7 +112,7 @@
 			// If this is the 15th time, exit the program
 			if (escapeCounter == 15) [NSApp terminate:nil];
 		}
-		else if ( [theEvent keyCode] == 3 && [theEvent modifierFlags] & NSCommandKeyMask )
+		else if ( [theEvent keyCode] == 3 && [theEvent modifierFlags] & NSEventModifierFlagCommand )
 		{
 			// Enable fullscreen key (command+f) to raise up
 			[super sendEvent:theEvent];
@@ -175,7 +175,7 @@
 				while ( [aSound duration] > kSoundDurationLimit )
 				{
 					// DEBUG
-					NSLog(@"removing sound from use: %@ ::OVER %d SECONDS::", aSoundPath, kSoundDurationLimit);
+					// NSLog(@"removing sound from use: %@ ::OVER %d SECONDS::", aSoundPath, kSoundDurationLimit);
 					
 					// Remove this sound so it isn't tried again later
 					[theSounds removeObjectAtIndex:randomSoundIndex];
